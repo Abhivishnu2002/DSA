@@ -43,4 +43,44 @@ class DoublyLinkedList{
             this.addToLast(value);
         }
     }
+    deleteAt(index){
+        if(index<0 || index>this.size) return;
+        if(index === 0){
+            this.head = this.head.next;
+            if(this.head) this.head.prev = null;
+            else this.tail = null;
+        }else if(index === this.size - 1){
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+        }else{
+            let curr = this.head;
+            for(let i = 0; i < index; i++){
+                curr = curr.next
+            }
+            curr.prev.next = curr.next;
+            curr.next.prev = curr.prev
+        }
+        this.size--;
+    }
+    deleteValue(data){
+        let curr = this.head;
+        while(curr){
+            if(curr.value === data){
+                if(curr === this.head){
+                    this.head = this.head.next;
+                    if(this.head) this.head.prev = null;
+                    else this.tail = null;
+                }else if(curr === this.tail){
+                    this.tail = curr.prev;
+                    this.tail.next = null;
+                }else{
+                    curr.prev.next = curr.next;
+                    curr.next.prev = curr.prev;
+                }
+                this.size--;
+                return;
+            }
+            curr = curr.next;
+        }
+    }
 }
