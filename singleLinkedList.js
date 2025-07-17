@@ -210,6 +210,15 @@ class LinkedList{
             this.size++;
         }
     }
+    deleteNextOfEven(){
+        let curr = this.head;
+        while(curr && curr.next){
+            if(curr.value % 2 === 0){
+                curr.next = curr.next.next;
+            }
+            curr = curr.next;
+        }
+    }
     print(){
         if(this.isEmpty()){
             console.log("The list is empty");
@@ -236,5 +245,6 @@ list.insertAfter(40, 45);
 list.insertBefore(20, 15);
 console.log(list.search(10))
 console.log(list.middle())
+list.deleteNextOfEven();
 list.print()
 console.log(list.isPalindrome());
